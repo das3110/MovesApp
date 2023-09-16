@@ -14,6 +14,6 @@
     <string name="txtAcercade">En este Laboratorio se realizaron pantallas principales y escenciales de nuestra aplicacion,
          la cual es una version propia del famoso juego bop it, en esta version de aplicacion no esta implementado el juego, solo se muestran
      las funcionalidades de, navegacion entre las pantallas, configuracion de nombre de usuario, configuracion del tema de la aplicacion
-        y por ultimo la configuracion de la duracion de la pantalla de bienvenida</string>
+        y por ultimo la configuracion de la duracion de la pantalla de bienvenida.</string>
 
 </resources>
