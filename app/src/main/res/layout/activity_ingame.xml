@@ -4,48 +4,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/PaleGoldenrod"
     tools:context=".Ingame">
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animationView2"
-        android:layout_width="416dp"
-        android:layout_height="342dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.367"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/construccion" />
+    <TextView
+        android:id="@+id/puntuacionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
 
-    <Button
-        android:id="@+id/buttonIngame"
-        android:layout_width="107dp"
-        android:layout_height="61dp"
-        android:backgroundTint="@color/design_default_color_secondary_variant"
+        android:layout_marginTop="4dp"
         android:fontFamily="@font/alfa_slab_one"
-        android:text="OK"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Puntos:"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColorHighlight="@color/Green"
+        android:textColorLink="@color/Green"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.392"
+
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/animationView2" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView5"
+        tools:text="Puntuación:" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="199dp"
+        android:layout_height="68dp"
         android:fontFamily="@font/alfa_slab_one"
-        android:text="@string/ingame"
+        android:text="TextView"
         android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColorHighlight="@color/green"
-        android:textColorLink="@color/green"
-        app:layout_constraintBottom_toTopOf="@+id/buttonIngame"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/animationView2"
-        tools:text="Pronto estara disponible el juego!" />
+        app:layout_constraintTop_toBottomOf="@+id/puntuacionTextView"
+        app:layout_constraintVertical_bias="0.415" />
+
+    <TextView
+        android:id="@+id/tiempoRestanteTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/alfa_slab_one"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.02"
+        app:layout_constraintStart_toEndOf="@+id/imageView5"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="57dp"
+        android:layout_height="54dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.293"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@raw/cronometro" />
 </androidx.constraintlayout.widget.ConstraintLayout>
