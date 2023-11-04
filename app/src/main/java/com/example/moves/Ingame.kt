@@ -165,7 +165,6 @@ class Ingame : AppCompatActivity(), GestureDetector.OnGestureListener, SensorEve
             }
             override fun onFinish() {
                 mostrarPantallaVictoria()
-
             }
         }.start()
     }
