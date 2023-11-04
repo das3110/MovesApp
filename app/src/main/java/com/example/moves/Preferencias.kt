@@ -2,12 +2,14 @@ package com.example.moves
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Switch
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
@@ -24,6 +26,13 @@ class Preferencias : AppCompatActivity() {
         val botonok= findViewById<Button>(R.id.buttonOk2)
         val user= findViewById<TextView>(R.id.txtUsername)
         user.setText(GlobalVariables.userName)
+
+        val btnResetPuntaje = findViewById<Button>(R.id.button2)
+        btnResetPuntaje.setOnClickListener {
+            resetearPuntaje()
+            Toast.makeText(this, "Puntaje máximo restablecido", Toast.LENGTH_SHORT).show()
+        }
+
         botonok.setOnClickListener{
             val intent= Intent(this,MainActivity::class.java )
             startActivity(intent)
@@ -56,6 +65,12 @@ class Preferencias : AppCompatActivity() {
                 editor.apply()
             }
         }
+    }
+    private fun resetearPuntaje() {
+        val sharedPref = getSharedPreferences("PREFERENCIAS", Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = sharedPref.edit()
+        editor.putInt("puntuacion_maxima", 0)
+        editor.apply()
     }
     private fun ActualizarNombre(){
         val inputUsername =findViewById<EditText>(R.id.txtIngresarNombre).text.toString()

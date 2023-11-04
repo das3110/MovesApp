@@ -24,11 +24,13 @@ class MainActivity : AppCompatActivity() {
         val buttonSalir = findViewById<Button>(R.id.button_salir)
         val buttonJugar = findViewById<Button>(R.id.button_jugar)
         val user= findViewById<TextView>(R.id.txtUser)
+
         user.setText(GlobalVariables.userName)
 
         mediaPlayer = MediaPlayer.create(this, R.raw.menu)
         mediaPlayer.isLooping = true
         iniciarMusica()
+
         buttonJugar.setOnClickListener {
             val intent= Intent(this,Ingame::class.java )
             startActivity(intent)

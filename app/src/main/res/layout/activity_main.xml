@@ -50,6 +50,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+
     <Button
         android:id="@+id/button_jugar"
         android:layout_width="164dp"
@@ -64,11 +65,9 @@
         app:iconSize="25dp"
         app:layout_constraintBottom_toTopOf="@+id/button_acercade"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.982" />
-
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/button_salir"
@@ -91,7 +90,6 @@
         android:id="@+id/txtBienvenida"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
         android:fontFamily="@font/alfa_slab_one"
         android:text="@string/bienvenida"
         android:textSize="24sp"
@@ -100,7 +98,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView3"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.768" />
 
     <TextView
         android:id="@+id/txtUser"
@@ -109,10 +107,12 @@
         android:fontFamily="@font/alfa_slab_one"
         android:text=""
         android:textSize="20sp"
+
         app:layout_constraintBottom_toTopOf="@+id/button_jugar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtBienvenida"
         app:layout_constraintVertical_bias="0.132" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

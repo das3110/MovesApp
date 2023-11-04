@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Inventario"
+rootProject.name = "Moves"
 include(":app")
