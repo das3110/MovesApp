@@ -19,14 +19,17 @@ import android.os.Handler
 
 
 private lateinit var mediaPlayer: MediaPlayer
+private const val PREF_NAME = "Preferencias"
+private const val PREF_DIFFICULTY = "pref_difficulty"
 class Ingame : AppCompatActivity(), GestureDetector.OnGestureListener, SensorEventListener {
+
     private lateinit var gestureDetector: GestureDetector
     private lateinit var puntuacionTextView: TextView
     private lateinit var textoAleatorio: TextView
     private var puntuacion = 0
     private val palabras = arrayOf("Arriba", "Abajo","Agitar","Toque")
     private lateinit var countDownTimer: CountDownTimer
-    private var tiempoRestanteMillis: Long = 10000
+    private var tiempoRestanteMillis: Long = 60000
     private val umbralAcelerometro = 10.0
     private lateinit var sensorManager: SensorManager
     private lateinit var accelerometer: Sensor
@@ -35,8 +38,21 @@ class Ingame : AppCompatActivity(), GestureDetector.OnGestureListener, SensorEve
     private var puntuacionMaxima = 0
     private val handler = Handler()
     private lateinit var tiempoRestanteTextView: TextView
+    private var tiempoDelay: Long = 3000
 
 
+    private fun obtenerTiempoDelayPorDificultad(dificultad: Dificultad): Long {
+        return when (dificultad) {
+            Dificultad.FACIL -> 3000
+            Dificultad.NORMAL -> 2000
+            Dificultad.DIFICIL -> 1000
+        }
+    }
+    private fun obtenerDificultadAlmacenada(): Dificultad {
+        val sharedPreferences = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+        val ordinal = sharedPreferences.getInt(PREF_DIFFICULTY, Dificultad.FACIL.ordinal)
+        return Dificultad.values().getOrElse(ordinal) { Dificultad.FACIL }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ingame)
@@ -52,16 +68,21 @@ class Ingame : AppCompatActivity(), GestureDetector.OnGestureListener, SensorEve
         val sharedPref = getSharedPreferences("PREFERENCIAS", Context.MODE_PRIVATE)
         puntuacionMaxima = sharedPref.getInt("puntuacion_maxima", 0)
 
+        val userName = sharedPref.getString("user_name", null)
+        val editor: SharedPreferences.Editor = sharedPref.edit()
+        editor.putString("user_name", userName)
+        editor.apply()
+
+        val dificultad = obtenerDificultadAlmacenada()
+        tiempoDelay = obtenerTiempoDelayPorDificultad(dificultad)
+
         actualizarPuntuacion()
         actualizarTextoAleatorio()
         iniciarTemporizador(tiempoRestanteMillis)
 
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
-
-
     }
-
     override fun onTouchEvent(event: MotionEvent): Boolean {
         return gestureDetector.onTouchEvent(event)
     }
@@ -118,6 +139,8 @@ class Ingame : AppCompatActivity(), GestureDetector.OnGestureListener, SensorEve
             val sharedPref = getSharedPreferences("PREFERENCIAS", Context.MODE_PRIVATE)
             val editor: SharedPreferences.Editor = sharedPref.edit()
             editor.putInt("puntuacion_maxima", puntuacionMaxima)
+            val userName = sharedPref.getString("user_name", null)
+            editor.putString("user_with_max_score", userName)
             editor.apply()
         }
         actualizarPuntuacion()
@@ -129,7 +152,7 @@ class Ingame : AppCompatActivity(), GestureDetector.OnGestureListener, SensorEve
         handler.removeCallbacksAndMessages(null)
         handler.postDelayed({
             actualizarTextoAleatorio()
-        }, 3000)
+        }, tiempoDelay)
     }
     private fun actualizarTiempoRestante() {
         val segundosRestantes = tiempoRestanteMillis / 1000
@@ -170,6 +193,14 @@ class Ingame : AppCompatActivity(), GestureDetector.OnGestureListener, SensorEve
     }
     private fun iniciarMusica() {
         if (!mediaPlayer.isPlaying) {
+            val dificultad = obtenerDificultadAlmacenada()
+            val velocidadBase = 1.0
+            val factorVelocidad = when (dificultad) {
+                Dificultad.FACIL -> 1.0
+                Dificultad.NORMAL -> 1.25
+                Dificultad.DIFICIL -> 1.5
+            }
+            mediaPlayer.setPlaybackParams(mediaPlayer.playbackParams.setSpeed((velocidadBase * factorVelocidad).toFloat()))
             mediaPlayer.start()
         }
     }
@@ -205,11 +236,8 @@ class Ingame : AppCompatActivity(), GestureDetector.OnGestureListener, SensorEve
                     incrementarPuntuacion()
                     actualizarTextoAleatorio()
                 }else if (textoAleatorio.text == "Arriba"){
-
                 }else if (textoAleatorio.text == "Abajo"){
-
                 }else if (textoAleatorio.text == "Toque"){
-
                 }
                 else {
                     mostrarPantallaDerrota()
@@ -217,8 +245,4 @@ class Ingame : AppCompatActivity(), GestureDetector.OnGestureListener, SensorEve
             }
         }
     }
-
-
-
-
 }

@@ -4,17 +4,15 @@
     <string name="preferencias">Preferencias</string>
     <string name="jugar">Jugar</string>
     <string name="acercade">Acerca De</string>
-
     <string name="timeSplash">Tiempo de la pantalla de bienvenida</string>
     <string name="bienvenida">Bienvenido</string>
-    <string name="username">Nombre de Usuario: </string>
+    <string name="username">Usuario: </string>
+    <string name="ptjmax">Puntaje Maximo: </string>
     <string name="actualizar">Actualizar</string>
     <string name="nombreIngresar">Ingrese nombre</string>
     <string name="modooscuro">Tema oscuro</string>
-    <string name="txtAcercade">En este Laboratorio se realizaron pantallas principales y escenciales de nuestra aplicacion,
-         la cual es una version propia del famoso juego bop it, en esta version de aplicacion no esta implementado el juego, solo se muestran
-     las funcionalidades de, navegacion entre las pantallas, configuracion de nombre de usuario, configuracion del tema de la aplicacion
-        y por ultimo la configuracion de la duracion de la pantalla de bienvenida.
+    <string name="txtAcercade">Esta aplicacion una version propia del famoso juego bop it, en esta version de aplicacion podemos navegar entre las pantallas, realizar configuracion de nombre de usuario, configuracion del tema de la aplicacion,
+        la configuracion de la duracion de la pantalla de bienvenida, la configuracioin de la dificultad, resetear el puntaje maximo y finalmente jugar.
     </string>
 
 </resources>
